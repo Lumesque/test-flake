@@ -12,7 +12,7 @@
     test = pkgs.stdenv.mkDerivation rec {
         name = "test-bin";
         pname = name;
-        version = "1.0";
+        version = "2.0";
         src = ./.;
         buildInputs = [pkgs.wrap];
         buildPhase = ''
