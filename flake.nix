@@ -30,7 +30,7 @@
     });
   in
   {
-    packages.x86_64-linux.hello = test;
+    packages.x86_64-linux.test = test;
 
     packages.x86_64-linux.default = test;
 
