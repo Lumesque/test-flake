@@ -31,6 +31,7 @@
   in
   {
     packages.x86_64-linux.test = test;
+    packages.x86_64-linux.hello = hello;
 
     packages.x86_64-linux.default = test;
 
