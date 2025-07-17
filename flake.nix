@@ -6,11 +6,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs }: 
+  let
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    hello = pkgs.hello.overrideAttrs (final: previous: {
+        pname = "hello-bin";
+        doInstallCheck = false;
+    });
+  in
+  {
+    self.packages.x86_64-linux.hello = hello;
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+    packages.x86_64-linux.default = hello;
 
   };
 }
