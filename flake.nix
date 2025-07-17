@@ -9,15 +9,30 @@
   outputs = { self, nixpkgs }: 
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    test = pkgs.stdenv.mkDerivation rec {
+        name = "test-bin";
+        pname = name;
+        version = "1.0";
+        src = ./.;
+        buildInputs = [pkgs.wrap];
+        buildPhase = ''
+            mkdir -p $out/bin
+            substituteAllInPlace test.sh 
+            chmod +x test.sh
+        '';
+        installPhase = ''
+            mv test.sh $out/bin/test-bin
+        '';
+    };
     hello = pkgs.hello.overrideAttrs (final: previous: {
         pname = "hello-bin";
         doInstallCheck = false;
     });
   in
   {
-    packages.x86_64-linux.hello = hello;
+    packages.x86_64-linux.hello = test;
 
-    packages.x86_64-linux.default = hello;
+    packages.x86_64-linux.default = test;
 
   };
 }
