@@ -15,7 +15,7 @@
     });
   in
   {
-    self.packages.x86_64-linux.hello = hello;
+    packages.x86_64-linux.hello = hello;
 
     packages.x86_64-linux.default = hello;
 
