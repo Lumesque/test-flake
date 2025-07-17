@@ -1,0 +1,16 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "testpkgs",
+        "type": "indirect"
+      },
+      "to": {
+        "owner": "Lumesque",
+        "repo": "test-flake",
+        "type": "github"
+      }
+    }
+  ],
+  "version": 2
+}
